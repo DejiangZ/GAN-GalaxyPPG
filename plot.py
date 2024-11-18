@@ -21,19 +21,15 @@ ax.set_xlabel('Activity Type', fontsize=12, fontweight='bold')
 
 plt.xticks(x, df['Activity'], rotation=45, ha='right', fontsize=10)
 
-plt.title('Heart Rate Estimation Performance Across Different Activities',
+plt.title('Heart Rate Estimation Performance on GalaxyPPG Dataset ',
           fontsize=14, fontweight='bold', pad=20)
 
 for idx, bar in enumerate(bars):
     height = bar.get_height()
     error = df['Std_MAE'].iloc[idx]
-    # Calculate the position for the label (above the error bar)
-    label_height = height + error + 2  # Add some padding
-
-    # Create the label with smaller font and background
+    label_height = height + error + 2
     label = f'{height:.1f}±{error:.1f}'
 
-    # Add white background to text for better visibility
     text = ax.text(bar.get_x() + bar.get_width() / 2., label_height, label,
                    ha='center', va='bottom', fontsize=8,
                    bbox=dict(facecolor='white', edgecolor='none', alpha=0.7, pad=1))
