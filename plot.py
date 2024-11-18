@@ -3,35 +3,27 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-# Read the data
 df = pd.read_csv(
     '/Users/dejiang.zheng/Library/CloudStorage/GoogleDrive-dejiang.jeong@gmail.com/其他计算机/Home/Dataset/ppg/WindowData/analysis_results/activity_summary.csv')
 
-# Set the style
 plt.style.use('seaborn-whitegrid')
 sns.set_style("whitegrid", {'grid.linestyle': '--'})
 
-# Create figure and axis with specified size and dpi
 fig, ax = plt.subplots(figsize=(15, 8), dpi=300)
 
-# Plot data
 x = range(len(df['Activity']))
 bars = ax.bar(x, df['Mean_MAE'], yerr=df['Std_MAE'],
               capsize=5, alpha=0.8, color='#2878B5',
               error_kw={'ecolor': '#C4412E', 'capthick': 2})
 
-# Customize the plot
 ax.set_ylabel('Mean Absolute Error (BPM)', fontsize=12, fontweight='bold')
 ax.set_xlabel('Activity Type', fontsize=12, fontweight='bold')
 
-# Rotate x-axis labels and set their alignment
 plt.xticks(x, df['Activity'], rotation=45, ha='right', fontsize=10)
 
-# Add a title
 plt.title('Heart Rate Estimation Performance Across Different Activities',
           fontsize=14, fontweight='bold', pad=20)
 
-# Add value labels above the error bars
 for idx, bar in enumerate(bars):
     height = bar.get_height()
     error = df['Std_MAE'].iloc[idx]
@@ -46,21 +38,16 @@ for idx, bar in enumerate(bars):
                    ha='center', va='bottom', fontsize=8,
                    bbox=dict(facecolor='white', edgecolor='none', alpha=0.7, pad=1))
 
-# Customize grid
 ax.yaxis.grid(True, linestyle='--', alpha=0.7)
 ax.set_axisbelow(True)
 
-# Remove top and right spines
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# Set y-axis limits to accommodate labels
 ymax = max(df['Mean_MAE'] + df['Std_MAE']) * 1.2  # Add 20% padding
 ax.set_ylim(0, ymax)
 
-# Adjust layout to prevent label cutoff
 plt.tight_layout()
 
-# Save the plot with high DPI
 plt.savefig('mae_across_activities.png', dpi=300, bbox_inches='tight')
 plt.close()
