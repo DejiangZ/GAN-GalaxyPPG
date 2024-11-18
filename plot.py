@@ -62,5 +62,5 @@ ax.set_ylim(0, ymax)
 plt.tight_layout()
 
 # Save the plot with high DPI
-plt.savefig('mae_across_activities_improved.png', dpi=300, bbox_inches='tight')
+plt.savefig('mae_across_activities.png', dpi=300, bbox_inches='tight')
 plt.close()
