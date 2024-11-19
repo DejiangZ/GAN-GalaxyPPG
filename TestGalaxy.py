@@ -46,7 +46,7 @@ class HeartRateComparison:
 
         try:
             original_signal = np.array([float(x) for x in signal_str.split(';')])
-            if len(original_signal) < self.input_sample_rate * self.window_size * 0.5:  # 确保至少有一半的数据点
+            if len(original_signal) < self.input_sample_rate * self.window_size * 0.5:  
                 return None
 
             target_length = int(self.window_size * self.target_sample_rate)
