@@ -13,7 +13,7 @@ class HeartRateComparison:
     def __init__(self, window_data_dir):
         self.window_data_dir = window_data_dir
         self.input_sample_rate = 25  # Galaxy Watch Rate
-        self.target_sample_rate = 128  # Model Expected
+        self.target_sample_rate = 64  # Model Expected
         self.window_size = 8  # Galaxy PPG Window Segment
 
         # Dataset Activity Label
