@@ -45,5 +45,5 @@ ax.set_ylim(0, ymax)
 
 plt.tight_layout()
 
-plt.savefig('mae_across_activities.png', dpi=300, bbox_inches='tight')
+plt.savefig('mae_across_activities-64HZ.png', dpi=300, bbox_inches='tight')
 plt.close()

@@ -13,7 +13,7 @@ class HeartRateComparison:
     def __init__(self, window_data_dir):
         self.window_data_dir = window_data_dir
         self.input_sample_rate = 25  # Galaxy Watch Rate
-        self.target_sample_rate = 128  # Model Expected
+        self.target_sample_rate = 64  # Model Expected
         self.window_size = 8  # Galaxy PPG Window Segment
 
         # Dataset Activity Label
@@ -46,7 +46,7 @@ class HeartRateComparison:
 
         try:
             original_signal = np.array([float(x) for x in signal_str.split(';')])
-            if len(original_signal) < self.input_sample_rate * self.window_size * 0.5:  # 确保至少有一半的数据点
+            if len(original_signal) < self.input_sample_rate * self.window_size * 0.5:
                 return None
 
             target_length = int(self.window_size * self.target_sample_rate)
