@@ -13,7 +13,7 @@ class HeartRateComparison:
     def __init__(self, window_data_dir):
         self.window_data_dir = window_data_dir
         self.input_sample_rate = 25  # Galaxy Watch Rate
-        self.target_sample_rate = 64  # Model Expected is 128HZ
+        self.target_sample_rate = 128  # Model Expected is 128HZ
         self.window_size = 8  # Galaxy PPG Window Segment
 
         # Dataset Activity Label
@@ -49,7 +49,7 @@ class HeartRateComparison:
             if len(original_signal) < self.input_sample_rate * self.window_size * 0.5:
                 return None
 
-            target_length = int(self.window_size * self.target_sample_rate)
+            target_length = 1024
             resampled_signal = signal.resample(original_signal, target_length)
 
             filtered_signal = filter_ppg(resampled_signal, self.target_sample_rate)
